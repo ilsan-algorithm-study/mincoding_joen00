@@ -1,47 +1,43 @@
-#include <iostream>
-#include <string>
+#include<iostream>
 using namespace std;
 
-int arr[5];
-int used[6];
-int path[6];
 
-int MAX = -21e8;
-int MIN = 21e8;
+int map[3][8];
+int cnt;
 
-void dfs(int level) {
+void dfs(int now, int level)
+{
 
-	if (level == 5) {
-		int a = path[0] * path[1] - path[2] * path[3] + path[4];
-		if (a > MAX) {
-			MAX = a;
-		}
-		if(a < MIN){
-			MIN = a;
-		}
+	if (level == 7) {
+		cnt++;
 		return;
 	}
-
-	for (int i = 0; i < 5; i++) {
-		if (used[i] == 0) {
-			used[i] = 1;
-			path[level] = arr[i];
-			dfs(level + 1);
-			used[i] = 0;
-		}
+	for (int x = 0; x < 3; x++)
+	{
+		int direct[3] = { -1,0,1 };
+		int dy = level;
+		int dx = now + direct[x];
+		if (dx < 0 || dx > 2)continue;
+		dfs(dx, level + 1);
 	}
 
 }
-
-int main() {
-
-	for (int i = 0; i < 5; i++) {
-		cin >> arr[i];
+int main()
+{
+	char a;
+	cin >> a;
+	if (a == 'A') {
+		dfs(0, 0);
+		cout << cnt;
 	}
-	dfs(0);
-	cout << MAX << endl;
-	cout << MIN;
-
+	else if (a == 'B') {
+		dfs(1, 0);
+		cout << cnt;
+	}
+	else if (a == 'C') {
+		dfs(2, 0);
+		cout << cnt;
+	}
 
 	return 0;
 }
