@@ -1,57 +1,40 @@
 #include <iostream>
-#include <unordered_map>
-
+#include <string>
 using namespace std;
 
-string str;
-int a;
-int used[7];
-struct node {
-    char a;
-    int b;
-};
+char name[7] = { "TRBMDC" };
+char path[10];
+int a, b;
+int cnt;
+int used[10];
 
-unordered_map<char, int> map;
+void abc(int level) {
 
-int MAX = 0;
+	if (level == 6) {
+		for (int i = 0; i < 6; i++) {
+			if (path[i] == 'D' && i == a - 1)return;
+			if (path[i] == 'D' && i == b - 1)return;
+		}
+		cnt++;
+		return;
+	}
 
-void dfs(int level, int sum) {
-
-    
-    if ((str.length() - a) == level) {
-
-        if (sum % 10 == 0) {
-            if (MAX < sum) {
-                MAX = sum;
-            }
-        }
-        return;
-    }
-
-    for (int i = 0; i < str.length(); i++) {
-        if (used[i] == 0) {
-            used[i] = 1;
-            dfs(level + 1, sum + map[str[i]]);
-            used[i] = 0;
-        }
-    }
+	for (int i = 0; i < 6; i++) {
+		if (used[i] == 0) {
+			used[i] = 1;
+			path[level] = name[i];
+			abc(level + 1);
+			path[level] = 0;
+			used[i] = 0;
+		}
+	}
 
 }
 
 int main() {
 
-    map['a'] = 15;
-    map['b'] = 20;
-    map['c'] = 44;
-    map['d'] = 22;
-    map['e'] = 55;
-    map['f'] = 16;
-    map['g'] = 45;
-
-    cin >> str >> a;
-
-    dfs(0, 0);
-    cout << MAX;
-
-    return 0;
+	cin >> a >> b;
+	abc(0);
+	cout << cnt;
+	return 0;
 }
