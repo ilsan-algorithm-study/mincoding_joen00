@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
 
-
 int map[3][8];
 int cnt;
 
