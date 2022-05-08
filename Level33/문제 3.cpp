@@ -20,8 +20,6 @@ void setUnion(int a, int b) {
 
 int main() {
 
-    
-
     int n;
     cin >> n;
     int flag = 0;
@@ -43,10 +41,10 @@ int main() {
     }
 
     if (flag > 0) {
-        cout << "cycle �߰�";
+        cout << "cycle ¹ß°ß";
     }
     else {
-        cout << "�̹߰�";
+        cout << "¹Ì¹ß°ß";
     }
     return 0;
 }
