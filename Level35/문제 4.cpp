@@ -32,7 +32,6 @@ void abc(int level) {
 }
 
 int main() {
-
 	cin >> a >> b;
 	abc(0);
 	cout << cnt;
