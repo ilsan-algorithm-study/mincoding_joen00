@@ -22,10 +22,8 @@ void dfs(int level, int sum) {
 }
 
 int main() {
-
     cin >> money;
     dfs(0, money);
     cout << MIN;
-
     return 0;
 }
